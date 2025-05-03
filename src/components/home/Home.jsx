@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FaExclamationCircle, FaSpinner, FaCheck } from 'react-icons/fa';
+import { RiArrowRightUpLine } from "react-icons/ri";
 import { useNavigate } from 'react-router-dom';
 const Home = () => {
   const [offers, setOffers] = useState([]);
@@ -39,9 +40,14 @@ const Home = () => {
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-6xl mx-auto px-4 py-12">
 
-        <header className="mb-10 text-center">
-          <h1 className="text-4xl flex items-center justify-center font-bold text-indigo-700">Welcome to <img src="/logo.png" alt="app20" className='ml-5' /></h1>
-          <p className="mt-2 text-lg text-gray-600">Explore all available offers and rewards</p>
+        <header className="flex items-center justify-between mb-10 text-center ">
+          <div>
+            <h1 className="text-4xl flex items-center justify-center font-bold text-indigo-700 ">Welcome to <img src="/logo.png" alt="app20" className='ml-5' /></h1>
+            {/* <p className="mt-2 text-lg text-gray-600">Explore all available offers and rewards</p> */}
+          </div>
+          <div>
+            <button className='flex  items-center bg-indigo-700 hover:bg-indigo-600 px-5 py-2 text-white text-[20px] font-bold rounded-4xl cursor-pointer' onClick={() => navigate("/analytics")}>See Analytics <RiArrowRightUpLine className='text-[25px]' /></button>
+          </div>
         </header>
 
         <div className="bg-white rounded-xl shadow-md overflow-hidden">
