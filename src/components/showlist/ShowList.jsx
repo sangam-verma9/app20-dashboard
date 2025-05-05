@@ -143,7 +143,7 @@ const ShowList = () => {
                         {row.map((item, colIndex) => (
                             <div
                                 key={colIndex}
-                                className={`w-[200px] border-3 rounded-lg overflow-hidden shadow-md ${item.status === "pending"
+                                className={`w-[200px] border-2 rounded-lg shadow-md ${item.status === "pending"
                                     ? "border-[#000000]"
                                     : item.status === "accepted"
                                         ? "border-[#00ff00]"
@@ -154,7 +154,7 @@ const ShowList = () => {
                                     <img
                                         src={`${item.image}`}
                                         alt={`Image ${((currentPage - 1) * rowsPerPage + rowIndex) * imagesPerRow + colIndex + 1}`}
-                                        className="w-full h-[100%] object-cover"
+                                        className="w-full h-[100%] rounded-t-md"
                                     />
                                 </div>
                                 <div className="flex justify-center items-center p-1 bg-white h-[10%]">
