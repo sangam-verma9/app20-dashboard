@@ -5,11 +5,13 @@ import ShowList from './components/showlist/ShowList';
 import GetPaid from './components/getPaid/GetPaid';
 import Analytics from './components/analytics/Analytics';
 import Showanalytics from './components/analytics/Showanalytics';
+import Login from './components/auth/Login';
 const App = () => {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/showlist/:offer" element={<ShowList />} />
         <Route path="/getpaid" element={<GetPaid />} />
         <Route path="/analytics" element={<Analytics />} />

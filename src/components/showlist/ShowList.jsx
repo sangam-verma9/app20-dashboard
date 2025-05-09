@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { IoMdCheckmark } from "react-icons/io";
 import axios from "axios";
 import { RxCross2 } from "react-icons/rx";
@@ -15,6 +15,7 @@ const ShowList = () => {
     const params = useParams();
     const imagesPerRow = 7;
     const rowsPerPage = 2;
+    const navigate=useNavigate()
 
     useEffect(() => {
         fetchData();
@@ -23,11 +24,14 @@ const ShowList = () => {
     const fetchData = async () => {
         try {
             setLoading(true);
-            const response = await axios.get(`https://backend.app20.in/api/form/get-form-entries/?name=${(params.offer.trim())}`);
+            const response = await axios.get(`https://backend.app20.in/api/form/get-form-entries/?name=${(params.offer.trim())}`, {
+                withCredentials: true,
+              });
             const data = response.data || [];
             setImageData(data);
         } catch (error) {
             console.error("Error fetching data:", error);
+            navigate("/login")
             toast.success('Load data failed');
         } finally {
             setLoading(false);
@@ -88,6 +92,9 @@ const ShowList = () => {
                     axios.post('https://backend.app20.in/api/form/bulk-update-status/', {
                         ids: acceptedIds,
                         status: "paid"
+                    },
+                    {
+                        withCredentials: true,
                     })
                 );
             }
@@ -97,6 +104,9 @@ const ShowList = () => {
                     axios.post('https://backend.app20.in/api/form/bulk-update-status/', {
                         ids: rejectedIds,
                         status: "rejected"
+                    },
+                    {
+                        withCredentials: true,
                     })
                 );
             }

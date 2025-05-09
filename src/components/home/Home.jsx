@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import toast from 'react-hot-toast';
 import { FaExclamationCircle, FaSpinner, FaCheck } from 'react-icons/fa';
 import { RiArrowRightUpLine } from "react-icons/ri";
 import { useNavigate } from 'react-router-dom';
@@ -14,7 +15,10 @@ const Home = () => {
   const fetchOffers = async () => {
     setLoading(true);
     try {
-      const response = await fetch('https://backend.app20.in/api/form/app-details/');
+      const response = await fetch('https://backend.app20.in/api/form/app-details/', {
+        method: 'GET',
+        credentials: 'include',
+      });
 
       if (!response.ok) {
         throw new Error('Failed to fetch offers');
@@ -25,6 +29,7 @@ const Home = () => {
       setError(null);
     } catch (err) {
       console.error('Error fetching offers:', err);
+      navigate("/login");
       setError('Failed to load offers. Please try again later.');
     } finally {
       setLoading(false);

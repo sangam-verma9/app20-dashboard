@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from "axios";
 import { FaSpinner } from 'react-icons/fa';
 
@@ -9,7 +9,7 @@ const Showanalytics = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [totals, setTotals] = useState({ submissions: 0, accepted: 0, rejected: 0 });
-
+    const navigate=useNavigate()
     const fetchData = async () => {
         try {
             setLoading(true);
@@ -20,6 +20,7 @@ const Showanalytics = () => {
             setTotals(calculateTotals(data));
         } catch (err) {
             setError("Failed to fetch analytics data");
+            navigate("/login")
             setLoading(false);
             console.error("Error fetching analytics:", err);
         }

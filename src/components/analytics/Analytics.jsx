@@ -11,7 +11,10 @@ const Analytics = () => {
     const fetchOffers = async () => {
         setLoading(true);
         try {
-            const response = await fetch('https://backend.app20.in/api/form/app-details/');
+            const response = await fetch('https://backend.app20.in/api/form/app-details/', {
+                method: 'GET',
+                credentials: 'include',
+              });
 
             if (!response.ok) {
                 throw new Error('Failed to fetch offers');
@@ -22,6 +25,7 @@ const Analytics = () => {
             setError(null);
         } catch (err) {
             console.error('Error fetching offers:', err);
+            navigate("/login")
             setError('Failed to load offers. Please try again later.');
         } finally {
             setLoading(false);
